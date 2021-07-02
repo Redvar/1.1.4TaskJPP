@@ -1,5 +1,6 @@
 
 package jm.task.core.Hibernate.util;
+import jm.task.core.Hibernate.dao.UserDaoException;
 import jm.task.core.Hibernate.model.User;
 import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -7,12 +8,10 @@ import org.hibernate.cfg.Configuration;
 
 import javax.imageio.spi.ServiceRegistry;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Util {
-    private final String URL = "jdbc:mysql://localhost:3306/baida?useUnicode=true&serverTimezone=UTC";
-    private final String USER = "root";
-    private final String PASSWORD = "glhf1941WAW";
-    private Connection connection;
     public static SessionFactory sessionFactory;
 
     public static SessionFactory getSessionFactory() {
@@ -43,8 +42,17 @@ public class Util {
         return configuration.buildSessionFactory((org.hibernate.service.ServiceRegistry) serviceRegistry);
     }
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
+        final  String URL = "jdbc:mysql://localhost:3306/baida?useUnicode=true&serverTimezone=UTC";
+        final String USER = "root";
+        final String PASSWORD = "glhf1941WAW";
+        Connection connection;
+
+        try {
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (SQLException e) {
+            throw new UserDaoException("Ошибка соединения c бд", e);
+        }
         return connection;
     }
-
 }
