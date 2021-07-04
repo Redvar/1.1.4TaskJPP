@@ -63,6 +63,7 @@ public class UserDaoHibernateImpl implements UserDao {
             nativeQuery.setParameter(1, name);
             nativeQuery.setParameter(2, lastName);
             nativeQuery.setParameter(3, age);
+            nativeQuery.executeUpdate();
             transaction.commit();
             session.close();
         } catch (HibernateException e) {
