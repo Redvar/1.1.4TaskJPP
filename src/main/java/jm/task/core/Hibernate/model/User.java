@@ -1,21 +1,24 @@
 package jm.task.core.Hibernate.model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Table
+@Entity
+@Table(name = "user",schema = "mydbtest")
 public class User {
+
     @Id
+    @Column(name = "Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name = "Name")
+    //@Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(name = "LastName")
     private String lastName;
 
-    @Column
+    @Column(name = "Age")
     private Byte age;
 
     public User() {
@@ -27,7 +30,6 @@ public class User {
         this.lastName = lastName;
         this.age = age;
     }
-
     public Long getId() {
         return id;
     }
@@ -38,6 +40,16 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
     }
 
     public void setName(String name) {

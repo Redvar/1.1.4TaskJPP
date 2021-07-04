@@ -3,37 +3,41 @@ import jm.task.core.Hibernate.dao.UserDao;
 import jm.task.core.Hibernate.dao.UserDaoHibernateImpl;
 import jm.task.core.Hibernate.dao.UserDaoJDBCImpl;
 import jm.task.core.Hibernate.model.User;
+import jm.task.core.Hibernate.util.Util;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 import java.util.List;
 
 
 public class UserServiceImpl implements UserService {
+
+
+    SessionFactory session = Util.getSessionFactory();
+    UserDaoHibernateImpl userDaoHibernate = new UserDaoHibernateImpl(session);
+
     public void createUsersTable() {
-        UserDao userDao = new UserDaoHibernateImpl();
-        userDao.createUsersTable();
+        userDaoHibernate.createUsersTable();
     }
 
     public void dropUsersTable() {
-        UserDao userDao = new UserDaoHibernateImpl();
-        userDao.dropUsersTable();
+        userDaoHibernate.dropUsersTable();
     }
 
     public void saveUser(String name, String lastName, byte age) {
-        UserDao userDao = new UserDaoHibernateImpl();
-        userDao.saveUser(name, lastName, age);
+        userDaoHibernate.saveUser(name,lastName,age);
     }
 
     public void removeUserById(long id) {
-        UserDao userDao = new UserDaoHibernateImpl();
-        userDao.removeUserById(id);
+        userDaoHibernate.removeUserById(id);
     }
 
     public List<User> getAllUsers() {
-        UserDao userDao = new UserDaoHibernateImpl();
-        return userDao.getAllUsers();
+        List<User> users = userDaoHibernate.getAllUsers();
+        return users;
     }
 
     public void cleanUsersTable() {
-        UserDao userDao = new UserDaoHibernateImpl();
-        userDao.cleanUsersTable();
+        userDaoHibernate.cleanUsersTable();
     }
 }

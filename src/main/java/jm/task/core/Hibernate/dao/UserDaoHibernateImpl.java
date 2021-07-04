@@ -95,7 +95,7 @@ public class UserDaoHibernateImpl implements UserDao {
             session.close();
             return list;
         } catch (HibernateException e) {
-            throw new UserDaoException("При получение всех Users произошла ошибка." e);
+            throw new UserDaoException("При получение всех Users произошла ошибка.", e);
         }
     }
 
