@@ -3,22 +3,21 @@ package jm.task.core.Hibernate.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user",schema = "mydbtest")
+@Table(name = "users")
 public class User {
 
     @Id
-    @Column(name = "Id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Name")
-    //@Column(nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "LastName")
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "Age")
+    @Column(name = "age")
     private Byte age;
 
     public User() {

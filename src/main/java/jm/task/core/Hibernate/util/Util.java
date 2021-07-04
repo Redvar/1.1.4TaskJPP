@@ -5,11 +5,9 @@ import jm.task.core.Hibernate.model.User;
 import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 
-import javax.imageio.spi.ServiceRegistry;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Util {
     public static SessionFactory sessionFactory;
@@ -24,7 +22,7 @@ public class Util {
     public static Configuration getMySqlConfiguration() {
         Configuration configuration = new Configuration();
         configuration.addAnnotatedClass(User.class);
-        configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         configuration.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
         configuration.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/mydb");
         configuration.setProperty("hibernate.connection.username", "root");
@@ -43,7 +41,7 @@ public class Util {
     }
 
     public static Connection getConnection() {
-        final  String URL = "jdbc:mysql://localhost:3306/baida?useUnicode=true&serverTimezone=UTC";
+        final  String URL = "jdbc:mysql://localhost:3306/mydb";
         final String USER = "root";
         final String PASSWORD = "glhf1941WAW";
         Connection connection;
