@@ -43,7 +43,7 @@ public class Util {
     public static Connection getConnection() {
         final  String URL = "jdbc:mysql://localhost:3306/mydb";
         final String USER = "root";
-        final String PASSWORD = "glhf1941WAW";
+        final String PASSWORD = "root";
         Connection connection;
 
         try {

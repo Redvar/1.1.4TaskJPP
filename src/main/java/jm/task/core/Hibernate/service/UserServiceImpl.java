@@ -2,17 +2,13 @@ package jm.task.core.Hibernate.service;
 import jm.task.core.Hibernate.dao.UserDao;
 import jm.task.core.Hibernate.dao.UserDaoHibernateImpl;
 import jm.task.core.Hibernate.model.User;
-import jm.task.core.Hibernate.util.Util;
-import org.hibernate.SessionFactory;
 
 import java.util.List;
 
 
 public class UserServiceImpl implements UserService {
 
-
-    SessionFactory session = Util.getSessionFactory();
-    UserDao userDaoHibernate = new UserDaoHibernateImpl(session);
+    UserDao userDaoHibernate = new UserDaoHibernateImpl();
 
     public void createUsersTable() {
         userDaoHibernate.createUsersTable();
